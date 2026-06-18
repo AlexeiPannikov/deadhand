@@ -170,6 +170,21 @@
           transparent 70%
         );
       }
+      .hero-grid {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+      }
+      .hero-copy {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .hero-hank {
+        flex: 0 0 auto;
+        width: min(340px, 36%);
+        height: auto;
+        filter: drop-shadow(0 12px 34px rgba(245, 165, 36, 0.18));
+      }
       .logo {
         font: 800 18px/1 var(--mono);
         letter-spacing: 0.04em;
@@ -586,6 +601,18 @@
         .prices {
           grid-template-columns: 1fr;
         }
+        .hero-grid {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+        .hero-hank {
+          order: -1;
+          width: 168px;
+        }
+        .hero-copy .pill {
+          margin-top: 4px;
+        }
         .wl-row {
           flex-direction: column;
         }
@@ -636,24 +663,35 @@
             <a href="#pricing">Pricing</a>
           </div>
         </nav>
-        <span class="pill">Dead man's switch · Uptime · Security drift</span>
-        <h1>
-          Catch security drift
-          <span class="hl">before your users<br />(or attackers) do.</span>
-        </h1>
-        <p class="sub">
-          A deploy quietly strips your CSP. A cron job silently stops. An
-          endpoint starts returning <code>500</code>. Your site still "works" —
-          so nothing alerts you. Deadhand keeps watch over all three: silent
-          while everything's alive, blunt the second it isn't.
-        </p>
-        <a class="cta" href="#waitlist" data-ev="hero_cta">Get early access</a>
-        <a class="cta ghost" href="#how">See how it works</a>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="pill">Dead man's switch · Uptime · Security drift</span>
+            <h1>
+              Catch security drift
+              <span class="hl">before your users<br />(or attackers) do.</span>
+            </h1>
+            <p class="sub">
+              A deploy quietly strips your CSP. A cron job silently stops. An
+              endpoint starts returning <code>500</code>. Your site still "works" —
+              so nothing alerts you. Deadhand keeps watch over all three: silent
+              while everything's alive, blunt the second it isn't.
+            </p>
+            <a class="cta" href="#waitlist" data-ev="hero_cta">Get early access</a>
+            <a class="cta ghost" href="#how">See how it works</a>
 
-        <pre
-          class="snip"
-        ><span class="c"># add one line to any cron job — Deadhand stays silent until it doesn't check in</span>
+            <pre
+              class="snip"
+            ><span class="c"># add one line to any cron job — Deadhand stays silent until it doesn't check in</span>
 backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;your-token&gt;</span></pre>
+          </div>
+          <img
+            class="hero-hank"
+            src="hank-hero-transparent.png"
+            width="340"
+            height="424"
+            alt="Hank, the Deadhand night-watchman, hand on the dead man's switch, all quiet"
+          />
+        </div>
       </div>
     </header>
 
