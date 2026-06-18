@@ -11,6 +11,38 @@
       content="One monitor for three silent failures: cron jobs that stop running, endpoints that go down, and security posture that quietly breaks after a deploy. Flat pricing. API-first."
     />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Open Graph / social share (Hank) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://deadhand.app/" />
+    <meta
+      property="og:title"
+      content="Deadhand — catch security drift before your users (or attackers) do"
+    />
+    <meta
+      property="og:description"
+      content="Silent while everything's alive, blunt the second it isn't. One monitor for three silent failures: cron, uptime, and security drift. Flat pricing."
+    />
+    <meta property="og:image" content="https://deadhand.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Hank, the Deadhand night-watchman, hand on the dead man's switch"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Deadhand — catch security drift before it bites"
+    />
+    <meta
+      name="twitter:description"
+      content="Silent while everything's alive, blunt the second it isn't. Cron, uptime &amp; security drift in one monitor. Flat pricing."
+    />
+    <meta name="twitter:image" content="https://deadhand.app/og-image.png" />
+    <link rel="preload" as="image" href="hank-thumbsup.png" />
 
     <!-- ponytail: fake-door landing. Fill the 2 placeholders below, deploy as a static file, done.
      1) __POSTHOG_KEY__  -> PostHog project API key (Project Settings)
@@ -137,6 +169,21 @@
           rgba(245, 165, 36, 0.1),
           transparent 70%
         );
+      }
+      .hero-grid {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+      }
+      .hero-copy {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .hero-hank {
+        flex: 0 0 auto;
+        width: min(340px, 36%);
+        height: auto;
+        filter: drop-shadow(0 12px 34px rgba(245, 165, 36, 0.18));
       }
       .logo {
         font: 800 18px/1 var(--mono);
@@ -515,6 +562,18 @@
         outline: none;
         border-color: var(--accent2);
       }
+      .wl-hank {
+        display: block;
+        width: 104px;
+        height: 104px;
+        margin: 0 auto 4px;
+        border-radius: 16px;
+        filter: drop-shadow(0 6px 22px rgba(245, 165, 36, 0.22));
+        transition: transform 0.25s ease;
+      }
+      .wl-hank.cheer {
+        transform: scale(1.06) rotate(-2deg);
+      }
       .ok-msg {
         display: none;
         color: var(--ok);
@@ -541,6 +600,18 @@
         .cards,
         .prices {
           grid-template-columns: 1fr;
+        }
+        .hero-grid {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+        .hero-hank {
+          order: -1;
+          width: 168px;
+        }
+        .hero-copy .pill {
+          margin-top: 4px;
         }
         .wl-row {
           flex-direction: column;
@@ -592,24 +663,35 @@
             <a href="#pricing">Pricing</a>
           </div>
         </nav>
-        <span class="pill">Dead man's switch · Uptime · Security drift</span>
-        <h1>
-          Catch security drift
-          <span class="hl">before your users<br />(or attackers) do.</span>
-        </h1>
-        <p class="sub">
-          A deploy quietly strips your CSP. A cron job silently stops. An
-          endpoint starts returning <code>500</code>. Your site still "works" —
-          so nothing alerts you. Deadhand keeps watch over all three: silent
-          while everything's alive, blunt the second it isn't.
-        </p>
-        <a class="cta" href="#waitlist" data-ev="hero_cta">Get early access</a>
-        <a class="cta ghost" href="#how">See how it works</a>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="pill">Dead man's switch · Uptime · Security drift</span>
+            <h1>
+              Catch security drift
+              <span class="hl">before your users<br />(or attackers) do.</span>
+            </h1>
+            <p class="sub">
+              A deploy quietly strips your CSP. A cron job silently stops. An
+              endpoint starts returning <code>500</code>. Your site still "works" —
+              so nothing alerts you. Deadhand keeps watch over all three: silent
+              while everything's alive, blunt the second it isn't.
+            </p>
+            <a class="cta" href="#waitlist" data-ev="hero_cta">Get early access</a>
+            <a class="cta ghost" href="#how">See how it works</a>
 
-        <pre
-          class="snip"
-        ><span class="c"># add one line to any cron job — Deadhand stays silent until it doesn't check in</span>
+            <pre
+              class="snip"
+            ><span class="c"># add one line to any cron job — Deadhand stays silent until it doesn't check in</span>
 backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;your-token&gt;</span></pre>
+          </div>
+          <img
+            class="hero-hank"
+            src="hank-hero-transparent.png"
+            width="340"
+            height="424"
+            alt="Hank, the Deadhand night-watchman, hand on the dead man's switch, all quiet"
+          />
+        </div>
       </div>
     </header>
 
@@ -842,6 +924,14 @@ monitors:
 
     <section id="waitlist">
       <div class="wrap">
+        <img
+          id="wlHank"
+          class="wl-hank"
+          src="hank-watch.png"
+          width="104"
+          height="104"
+          alt="Hank, the night-watchman, on watch"
+        />
         <p class="eyebrow">Early access</p>
         <h2>Get in before launch</h2>
         <p class="lead" style="margin-left: auto; margin-right: auto">
@@ -937,6 +1027,13 @@ monitors:
         });
         this.style.display = "none";
         document.getElementById("ok").style.display = "block";
+        // Hank wakes up and cheers you onto the list
+        var hank = document.getElementById("wlHank");
+        if (hank) {
+          hank.src = "hank-thumbsup.png";
+          hank.alt = "Hank gives a thumbs up — you're on the list";
+          hank.classList.add("cheer");
+        }
       });
 
       // copy-to-clipboard on code blocks

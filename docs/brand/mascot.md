@@ -90,9 +90,40 @@ Negative: `scary, horror, gothic, realistic, photo, blood, gore, scythe, hood, t
 > thick rounded linework, deep charcoal background #0a0b0d, cream bone #e7e9ec,
 > amber linework #f5a524, one alert red accent #e5484d. Centered, clean.
 
-**Expression sheet (for a style reference set):**
+**Expression sheet — the prompt that produced the approved art** (image-to-image
+from a prior pass at strength ~0.5 keeps the face consistent):
 
-> Character sheet of cartoon skeleton mascot Hank in beanie and scarf, five
-> expressions in a row on charcoal: sleepy half-lidded, faint smirk, wide-eyed
-> alert, urgent pointing, and a calm bony thumbs-up. Grim Fandango calaca style,
-> flat vector, amber linework on #0a0b0d, warm not scary.
+> Character sheet of a friendly cartoon skeleton mascot named Hank — a cozy
+> night-watchman, NOT scary, no reaper. Chunky rounded calaca skull, big
+> expressive eye-sockets with dot-pupils, faint blush on the cheekbones. He wears
+> a knit beanie and a hooded jacket. Six poses in a clean 3x2 grid. COLOR — this
+> is critical. Deep charcoal background #0a0b0d (dark, not white). Charcoal jacket
+> and beanie. Warm cream bone #e7e9ec. Glowing AMBER #f5a524 is the DOMINANT
+> accent: amber linework, amber rim-light, amber zipper and trim. Amber is the
+> brand color — it must dominate. Absolutely NO blue, NO teal, NO grey hoodie, NO
+> plain orange. In EVERY pose, one bony hand rests on a small detonator plunger
+> switch (a T-handle box, like the logo) that has a round glowing indicator light
+> on it. Make the EYES very expressive — emotion comes mainly from the
+> eye-sockets: 1) sleepy half-lidded calm — green indicator #46b06f; 2) warm
+> closed-eye smile, blushing — green; 3) curious wide eyes, head tilted — green;
+> 4) wide-eyed ALARM, no smile, one finger pointing — RED indicator #e5484d;
+> 5) urgent focused glare, slamming the plunger down — red; 6) relieved happy
+> eyes, calm bony thumbs-up — green again. Flat vector, thick rounded linework,
+> limited palette, bold and clean, centered on the dark background. No symbols on
+> the chest, no logos except the plunger. No lettering anywhere.
+
+Negative: `blue, teal, navy, grey hoodie, white background, scary, horror,
+gothic, realistic, photo, blood, gore, scythe, hood mask, reaper, alien, text,
+letters, watermark, signature, username, cluttered`
+
+## Approved assets
+
+Live in [`assets/`](assets/). Regenerate from the source sheet, don't hand-edit.
+
+- `hank-expressions.png` — master 3x2 expression sheet (source of truth).
+- `hank-avatar.png` — 512×512 social/PostHog avatar. The "content, green light"
+  pose (top-center) — playful at rest, the face of the brand.
+- `hank-avatar-180.png`, `hank-favicon-32.png` — apple-touch / favicon sizes.
+- `og-image.png` — 1200×630 OG/share card: Hank + `DEADHAND` wordmark, the
+  "on watch" badge, and the landing's own line *"Silent while everything's
+  alive. Blunt the second it isn't."*
