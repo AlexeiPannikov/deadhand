@@ -10,6 +10,7 @@
       name="description"
       content="One monitor for three silent failures: cron jobs that stop running, endpoints that go down, and security posture that quietly breaks after a deploy. Flat pricing. API-first."
     />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
     <!-- ponytail: fake-door landing. Fill the 2 placeholders below, deploy as a static file, done.
      1) __POSTHOG_KEY__  -> PostHog project API key (Project Settings)
@@ -164,6 +165,10 @@
       .logo {
         display: flex;
         align-items: center;
+      }
+      .logo .mark {
+        flex: none;
+        margin-right: 9px;
       }
       .live {
         display: inline-flex;
@@ -560,6 +565,26 @@
       <div class="wrap">
         <nav>
           <div class="logo">
+            <svg
+              class="mark"
+              width="26"
+              height="26"
+              viewBox="0 0 32 32"
+              fill="none"
+              aria-hidden="true"
+            >
+              <g
+                stroke="var(--accent2)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9.5 8h13" />
+                <path d="M16 8v6.5" />
+                <rect x="8.5" y="14.5" width="15" height="10" rx="2.5" />
+              </g>
+              <circle cx="19.5" cy="19.5" r="1.6" fill="var(--ok)" />
+            </svg>
             DEAD<b>HAND</b><span class="live">on watch</span>
           </div>
           <div class="navlinks">

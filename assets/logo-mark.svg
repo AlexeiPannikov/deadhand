@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none" role="img" aria-label="Deadhand">
+  <!-- dead man's switch: T-handle held down into the detonator box. amber = alive/at rest. -->
+  <g stroke="#f5a524" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- T-handle (the hand stays here) -->
+    <path d="M9.5 8h13" />
+    <!-- plunger shaft pressed into the box -->
+    <path d="M16 8v6.5" />
+    <!-- detonator housing -->
+    <rect x="8.5" y="14.5" width="15" height="10" rx="2.5" />
+  </g>
+  <!-- on-watch LED: green = everything's alive -->
+  <circle cx="19.5" cy="19.5" r="1.6" fill="#46b06f" />
+</svg>
