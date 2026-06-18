@@ -23,6 +23,7 @@ We're testing demand **before** writing the product. `index.html` is a fake-door
 ## Docs
 
 - [docs/brand/brand-voice.md](docs/brand/brand-voice.md) — the soul: personality, two-mode voice, do/don't, vocabulary, microcopy. **Read before writing any user-facing copy.**
+- [docs/brand/mascot.md](docs/brand/mascot.md) — Hank, the skeleton night-watchman: character bible, two-mode poses, wardrobe, palette, generation prompts.
 - [docs/brand/positioning.md](docs/brand/positioning.md) — the idea, target customer, competitors, differentiation, pricing, SEO strategy.
 - [docs/brand/utm-links.md](docs/brand/utm-links.md) — UTM-tagged share links per channel. Use these (not bare URLs) when posting, so PostHog attributes signups to a source.
 
