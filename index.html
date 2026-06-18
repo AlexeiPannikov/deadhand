@@ -42,6 +42,7 @@
       content="Silent while everything's alive, blunt the second it isn't. Cron, uptime &amp; security drift in one monitor. Flat pricing."
     />
     <meta name="twitter:image" content="https://deadhand.app/og-image.png" />
+    <link rel="preload" as="image" href="hank-thumbsup.png" />
 
     <!-- ponytail: fake-door landing. Fill the 2 placeholders below, deploy as a static file, done.
      1) __POSTHOG_KEY__  -> PostHog project API key (Project Settings)
@@ -546,6 +547,18 @@
         outline: none;
         border-color: var(--accent2);
       }
+      .wl-hank {
+        display: block;
+        width: 104px;
+        height: 104px;
+        margin: 0 auto 4px;
+        border-radius: 16px;
+        filter: drop-shadow(0 6px 22px rgba(245, 165, 36, 0.22));
+        transition: transform 0.25s ease;
+      }
+      .wl-hank.cheer {
+        transform: scale(1.06) rotate(-2deg);
+      }
       .ok-msg {
         display: none;
         color: var(--ok);
@@ -873,6 +886,14 @@ monitors:
 
     <section id="waitlist">
       <div class="wrap">
+        <img
+          id="wlHank"
+          class="wl-hank"
+          src="hank-watch.png"
+          width="104"
+          height="104"
+          alt="Hank, the night-watchman, on watch"
+        />
         <p class="eyebrow">Early access</p>
         <h2>Get in before launch</h2>
         <p class="lead" style="margin-left: auto; margin-right: auto">
@@ -968,6 +989,13 @@ monitors:
         });
         this.style.display = "none";
         document.getElementById("ok").style.display = "block";
+        // Hank wakes up and cheers you onto the list
+        var hank = document.getElementById("wlHank");
+        if (hank) {
+          hank.src = "hank-thumbsup.png";
+          hank.alt = "Hank gives a thumbs up — you're on the list";
+          hank.classList.add("cheer");
+        }
       });
 
       // copy-to-clipboard on code blocks
