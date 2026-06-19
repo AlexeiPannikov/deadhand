@@ -450,6 +450,7 @@
         position: relative;
         margin: 34px 0 0;
         white-space: pre-wrap;
+        overflow-wrap: anywhere; /* break long unbreakable tokens (URLs) instead of forcing width */
         background: #0d0f12;
         border: 1px solid var(--line);
         border-radius: 12px;
@@ -920,6 +921,16 @@
         header .cta.ghost {
           margin-left: 0;
           margin-top: 10px;
+        }
+      }
+      /* very small screens: let the rigid rows wrap instead of forcing a horizontal scroll */
+      @media (max-width: 400px) {
+        nav {
+          flex-wrap: wrap;
+          gap: 10px 0;
+        }
+        .watchlog {
+          flex-wrap: wrap;
         }
       }
     </style>
