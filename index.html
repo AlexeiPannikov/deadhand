@@ -4,14 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Deadhand — catch security drift before your users (or attackers) do
+      Deadhand — on watch while you sleep. Cron, uptime &amp; security drift,
+      one monitor.
     </title>
     <meta
       name="description"
       content="One monitor for three silent failures: cron jobs that stop running, endpoints that go down, and security posture that quietly breaks after a deploy. Flat pricing. API-first."
     />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon-32.png"
+    />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
     <!-- Open Graph / social share (Hank) -->
@@ -19,13 +24,16 @@
     <meta property="og:url" content="https://deadhand.app/" />
     <meta
       property="og:title"
-      content="Deadhand — catch security drift before your users (or attackers) do"
+      content="Deadhand — we're on watch. Sleep well."
     />
     <meta
       property="og:description"
       content="Silent while everything's alive, blunt the second it isn't. One monitor for three silent failures: cron, uptime, and security drift. Flat pricing."
     />
-    <meta property="og:image" content="https://deadhand.app/assets/og-image.png" />
+    <meta
+      property="og:image"
+      content="https://deadhand.app/assets/og-image.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -35,13 +43,16 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Deadhand — catch security drift before it bites"
+      content="Deadhand — we're on watch. Sleep well."
     />
     <meta
       name="twitter:description"
       content="Silent while everything's alive, blunt the second it isn't. Cron, uptime &amp; security drift in one monitor. Flat pricing."
     />
-    <meta name="twitter:image" content="https://deadhand.app/assets/og-image.png" />
+    <meta
+      name="twitter:image"
+      content="https://deadhand.app/assets/og-image.png"
+    />
     <link rel="preload" as="image" href="assets/hank-thumbsup.png" />
 
     <!-- ponytail: fake-door landing. Fill the 2 placeholders below, deploy as a static file, done.
@@ -117,8 +128,9 @@
         --line: #23272e;
         --txt: #e7e9ec;
         --muted: #9aa3ad;
-        --accent: #e5484d;
+        --accent: #f5a524;
         --accent2: #f5a524;
+        --alert: #e5484d; /* ponytail: reserved for product alert states, not used at rest */
         --ok: #46b06f;
         --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       }
@@ -216,6 +228,7 @@
       .logo .mark {
         flex: none;
         margin-right: 9px;
+        border-radius: 6px;
       }
       .live {
         display: inline-flex;
@@ -400,13 +413,13 @@
       }
       .card.star:hover {
         border-color: var(--accent);
-        box-shadow: 0 10px 30px rgba(229, 72, 77, 0.18);
+        box-shadow: 0 10px 30px rgba(245, 165, 36, 0.18);
       }
       .card.star {
         border-color: var(--accent);
         background: linear-gradient(
           180deg,
-          rgba(229, 72, 77, 0.06),
+          rgba(245, 165, 36, 0.06),
           var(--panel)
         );
       }
@@ -636,26 +649,14 @@
       <div class="wrap">
         <nav>
           <div class="logo">
-            <svg
+            <img
               class="mark"
+              src="assets/hank-mark.png"
               width="26"
               height="26"
-              viewBox="0 0 32 32"
-              fill="none"
+              alt=""
               aria-hidden="true"
-            >
-              <g
-                stroke="var(--accent2)"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M9.5 8h13" />
-                <path d="M16 8v6.5" />
-                <rect x="8.5" y="14.5" width="15" height="10" rx="2.5" />
-              </g>
-              <circle cx="19.5" cy="19.5" r="1.6" fill="var(--ok)" />
-            </svg>
+            />
             DEAD<b>HAND</b><span class="live">on watch</span>
           </div>
           <div class="navlinks">
@@ -665,18 +666,22 @@
         </nav>
         <div class="hero-grid">
           <div class="hero-copy">
-            <span class="pill">Dead man's switch · Uptime · Security drift</span>
+            <span class="pill"
+              >Dead man's switch · Uptime · Security drift</span
+            >
             <h1>
-              Catch security drift
-              <span class="hl">before your users<br />(or attackers) do.</span>
+              We're on watch.<br />
+              <span class="hl">Sleep well.</span>
             </h1>
             <p class="sub">
               A deploy quietly strips your CSP. A cron job silently stops. An
-              endpoint starts returning <code>500</code>. Your site still "works" —
-              so nothing alerts you. Deadhand keeps watch over all three: silent
-              while everything's alive, blunt the second it isn't.
+              endpoint starts returning <code>500</code>. Your site still
+              "works" — so nothing alerts you. Deadhand keeps watch over all
+              three: silent while everything's alive, blunt the second it isn't.
             </p>
-            <a class="cta" href="#waitlist" data-ev="hero_cta">Get early access</a>
+            <a class="cta" href="#waitlist" data-ev="hero_cta"
+              >Get early access</a
+            >
             <a class="cta ghost" href="#how">See how it works</a>
 
             <pre
@@ -686,7 +691,7 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
           </div>
           <img
             class="hero-hank"
-            src="assets/hank-hero-transparent.png"
+            src="assets/hank-watch.png"
             width="340"
             height="424"
             alt="Hank, the Deadhand night-watchman, hand on the dead man's switch, all quiet"

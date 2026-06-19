@@ -67,3 +67,16 @@ Playful at rest, dead-serious when it matters.
 - Onboarding: *"Add one line. Then forget we exist — until something dies."*
 - Waitlist confirm: *"You're on the list. We'll wake you when it's time."*
 - Footer: *"a dead man's switch for your whole stack."*
+
+## Canonical landing copy (source of truth — keep index.html + og-image in sync with this)
+
+Single source for the hero/social copy. If you change it here, change it in `index.html` (and regenerate `assets/og-image.png`). Last updated 2026-06-19.
+
+- **Hero pill (the "what"):** *Dead man's switch · Uptime · Security drift*
+- **Hero H1 (the feeling — lead with this everywhere):** *We're on watch.* **Sleep well.** ← "Sleep well." is the amber-accent half.
+- **Hero subhead (the proof / breadth):** *A deploy quietly strips your CSP. A cron job silently stops. An endpoint starts returning 500. Your site still "works" — so nothing alerts you. Deadhand keeps watch over all three: silent while everything's alive, blunt the second it isn't.*
+- **Social card title (og:title / twitter:title):** *Deadhand — we're on watch. Sleep well.*
+- **SEO `<title>`:** *Deadhand — on watch while you sleep. Cron, uptime & security drift, one monitor.* (keeps the "security drift" keyword for search)
+- **Social card body (og/twitter description):** *Silent while everything's alive, blunt the second it isn't. … cron, uptime, and security drift … Flat pricing.*
+
+Retired slogans (don't reuse as primary — kept for history): *"Catch security drift before your users (or attackers) do"* — was the H1; demoted because it only covered the security leg. The "silent while everything's alive…" line lives on as the subhead, not the headline.

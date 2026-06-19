@@ -54,9 +54,12 @@ Recovery beat: a single bony thumbs-up — *"It lives."*
 
 ## Where Hank lives
 
-The nav logo stays the vector plunger mark. Hank shows up in: empty states,
-404, the waitlist-confirm screen, social avatar, OG image, onboarding,
-alert/recovery illustrations, loaders.
+The **logo-mark and favicon are Hank's head** (chunky skull in a beanie) —
+decided 2026-06-19, replacing the old vector plunger mark, which read as a
+generic icon at small sizes. The plunger lives on only as Hank's hero prop, not
+as the standalone mark. Hank also shows up in: empty states, 404, the
+waitlist-confirm screen, social avatar, OG image, onboarding, alert/recovery
+illustrations, loaders.
 
 ## Hard don'ts
 
@@ -116,14 +119,80 @@ Negative: `blue, teal, navy, grey hoodie, white background, scary, horror,
 gothic, realistic, photo, blood, gore, scythe, hood mask, reaper, alien, text,
 letters, watermark, signature, username, cluttered`
 
+### Additional prompts (added 2026-06-19)
+
+**Logo-mark / favicon — Hank's head** (1:1; export 32px, 180px apple-touch; must read at 16px):
+
+> Minimal logo icon of Hank — a friendly cartoon skeleton's HEAD only. Chunky
+> rounded calaca skull, big expressive dot-pupil eye-sockets with a faint smirk,
+> wearing a knit beanie. EXTREMELY simple and bold: thick clean shapes, no fine
+> detail, no shading, must stay readable shrunk to 16px. Front-facing, centered,
+> generous negative space. Cream bone #e7e9ec skull, amber #f5a524 beanie and
+> linework, on a deep charcoal #0a0b0d rounded-square badge. Flat vector icon.
+> No body, no plunger, no text.
+
+**Social avatar 512×512** (1:1):
+
+> Square social avatar of Hank, head and shoulders, front-facing, the "all quiet"
+> mood: sleepy half-lidded calm eye-sockets, warm faint smirk, blush on the
+> cheekbones, knit beanie and charcoal hooded jacket. A small detonator plunger
+> with a glowing green #46b06f light at the bottom edge. Centered, fills the
+> frame. Charcoal #0a0b0d background, cream bone #e7e9ec, dominant amber #f5a524
+> linework and rim-light. Flat vector, thick rounded linework. No text.
+
+**404 / empty state** (1:1, leave negative space for a headline; no plunger):
+
+> Hank relaxed and unbothered — a calm "nothing's dead yet" shrug, both bony
+> hands turned up in an easy shrug, faint smirk, half-lidded eyes. Knit beanie,
+> charcoal hooded jacket and work trousers — fully dressed, no exposed leg bones.
+> A small green #46b06f indicator light glowing softly on a console beside him.
+> Lots of empty negative space around him. Cozy night-shift calm, NOT sad, NOT
+> scary. No plunger. Charcoal #0a0b0d background, cream bone #e7e9ec, dominant
+> amber #f5a524 linework. Flat vector, thick rounded linework. No text.
+
+**Loader / waiting** (1:1; no plunger, legs covered):
+
+> Hank on the night shift, patiently sipping from a steaming thermos of coffee,
+> leaned back relaxed in his chair with half-lidded content eyes. Knit beanie,
+> charcoal hooded jacket and full work trousers tucked into boots — fully
+> dressed, NO exposed leg bones. A small amber wisp of steam from the thermos. A
+> small green #46b06f indicator light glowing on the console beside him. A
+> patient "still watching" loading mood. No plunger. Charcoal #0a0b0d background,
+> cream bone #e7e9ec, dominant amber #f5a524 linework and glow. Flat vector,
+> thick rounded linework. No text.
+
+**Two-mode pair** (16:9 / wide — the side-by-side hero image):
+
+> Single wide illustration: Hank shown twice side by side to contrast his two
+> modes. LEFT — AT REST: leaned back relaxed, thermos in hand, half-lidded smirk,
+> hand on the plunger, calm green #46b06f indicator, warm amber glow. RIGHT —
+> ALERT: the same character bolt upright, eye-sockets wide, no smile, one bony
+> finger pointing while slamming the plunger, its indicator now red #e5484d, hard
+> red light. Clear contrast between the warm-amber calm half and the tense red
+> half. Charcoal #0a0b0d background throughout, cream bone #e7e9ec, amber #f5a524
+> dominant on the rest side. Flat vector, thick rounded linework. No text.
+
 ## Approved assets
 
-Live in [`assets/`](assets/). Regenerate from the source sheet, don't hand-edit.
+Live in [`assets/`](assets/). `*-src.png` are the 1024² masters — regenerate
+sizes from those, don't hand-edit the small ones.
 
-- `hank-expressions.png` — master 3x2 expression sheet (source of truth).
-- `hank-avatar.png` — 512×512 social/PostHog avatar. The "content, green light"
-  pose (top-center) — playful at rest, the face of the brand.
-- `hank-avatar-180.png`, `hank-favicon-32.png` — apple-touch / favicon sizes.
-- `og-image.png` — 1200×630 OG/share card: Hank + `DEADHAND` wordmark, the
-  "on watch" badge, and the landing's own line *"Silent while everything's
-  alive. Blunt the second it isn't."*
+Mark / favicon (from `hank-mark-src.png`, head only, center-cropped to fill):
+- `hank-mark.png` — nav logo (rendered ~26px, CSS `border-radius`).
+- `apple-touch-icon.png` (180) · `favicon-32.png` (32).
+
+Poses (each its own file):
+- `hank-hero-transparent.png` — hero, at-rest, hand on switch (transparent bg).
+- `hank-watch.png` — waitlist default, calm/green. `hank-thumbsup.png` — signup success.
+- `hank-drowsy.png`, `hank-happy.png` — at-rest variants.
+- `hank-alert.png`, `hank-angry.png` — alert-mode (red), for the product later.
+- `hank-empty.png` — 404 / empty state ("nothing's dead yet" shrug).
+- `hank-loader.png` — loading / waiting (thermos, on watch).
+
+Other:
+- `hank-avatar.png` (512) from `hank-avatar-src.png` — social / PostHog avatar.
+- `og-image.png` — 1200×630 OG/share card, rendered from [`og.html`](../../og.html):
+  Hank + `DEADHAND`, "on watch" badge, slogan *"We're on watch. Sleep well."*
+
+The old plunger-mark SVGs (`favicon.svg`, `logo-mark.svg`, `logo-lockup.svg`)
+were retired and deleted 2026-06-19 when the mark became Hank's head.
