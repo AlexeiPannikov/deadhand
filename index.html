@@ -141,6 +141,7 @@
         scroll-behavior: smooth;
       }
       body {
+        position: relative;
         margin: 0;
         background: var(--bg);
         color: var(--txt);
@@ -174,13 +175,136 @@
       }
       /* hero */
       header {
+        position: relative;
         padding: 84px 0 64px;
-        border-bottom: 1px solid var(--line);
+      }
+      header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
         background: radial-gradient(
           900px 360px at 50% -10%,
           rgba(245, 165, 36, 0.1),
           transparent 70%
         );
+        animation: glowbreath 7s ease-in-out infinite;
+      }
+      @keyframes glowbreath {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      /* glow drifts down slower than the page — depth behind the hero */
+      @supports (animation-timeline: scroll()) {
+        @media (prefers-reduced-motion: no-preference) {
+          header::before {
+            animation:
+              glowbreath 7s ease-in-out infinite,
+              glowpar linear;
+            animation-timeline: auto, scroll(root);
+            animation-range: normal, 0% 70%;
+          }
+        }
+      }
+      @keyframes glowpar {
+        to {
+          transform: translateY(140px);
+        }
+      }
+      /* B. sparse night sky — stars generated in JS, each with its own duration + phase */
+      /* clipper sized exactly to the document — keeps the oversized star layers from adding scroll */
+      .sky {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .stars {
+        position: absolute;
+        inset: -560px 0; /* extra top/bottom so scroll-drift never bares an edge; clipped by .sky */
+      }
+      .stars.far {
+        opacity: 0.55;
+      }
+      .stars.mid {
+        opacity: 0.8;
+      }
+      .stars .star {
+        position: absolute;
+        border-radius: 50%;
+        background: #e7e9ec;
+        animation: twinkle linear infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.9;
+        }
+        50% {
+          opacity: 0.12;
+        }
+      }
+      /* depth: each layer drifts at its own speed against the scroll */
+      @supports (animation-timeline: scroll()) {
+        @media (prefers-reduced-motion: no-preference) {
+          .stars {
+            animation: stardrift linear;
+            animation-timeline: scroll(root);
+          }
+          .stars.far {
+            --drift: 520px; /* braked hardest → recedes, slow */
+          }
+          .stars.mid {
+            --drift: 140px;
+          }
+          .stars.near {
+            --drift: -320px; /* outruns the page → rushes forward, fast */
+          }
+        }
+      }
+      @keyframes stardrift {
+        to {
+          transform: translateY(var(--drift));
+        }
+      }
+      /* A. watch-log readout under the pulse */
+      .watchlog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 20px 2px;
+        font: 600 12px/1 var(--mono);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .watchlog .wl-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ok);
+        animation: pulse 2.4s ease-in-out infinite;
+      }
+      .watchlog .wl-sep {
+        opacity: 0.45;
+      }
+      .watchlog #wlMsg {
+        color: var(--ok);
+      }
+      /* D. night-only line in the hero */
+      .nightline {
+        margin: 16px 0 0;
+        font-size: 14px;
+        font-style: italic;
+        color: var(--accent2);
       }
       .hero-grid {
         display: flex;
@@ -315,6 +439,7 @@
         background: transparent;
         border: 1px solid var(--line);
         color: var(--txt);
+        margin-left: 12px;
       }
       .cta.ghost:hover {
         border-color: var(--accent2);
@@ -583,6 +708,7 @@
         border-radius: 16px;
         filter: drop-shadow(0 6px 22px rgba(245, 165, 36, 0.22));
         transition: transform 0.25s ease;
+        object-fit: contain;
       }
       .wl-hank.cheer {
         transform: scale(1.06) rotate(-2deg);
@@ -603,6 +729,160 @@
         text-align: center;
         color: var(--muted);
         font-size: 13px;
+      }
+      /* --- animations: quiet by design (all auto-disabled by the reduced-motion rule above) --- */
+      /* 1. scroll-reveal — native scroll-driven; @supports guard so unsupported browsers just show content */
+      @supports (animation-timeline: view()) {
+        @media (prefers-reduced-motion: no-preference) {
+          section {
+            animation: reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 20% entry 80%;
+          }
+        }
+      }
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(64px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      /* 2. heartbeat / EKG band — the dead man's switch, drawn. Seamless: path is 2 identical cycles, slide by one */
+      .ekg {
+        background: var(--bg);
+        overflow: hidden;
+      }
+      .ekg svg {
+        display: block;
+        width: 100%;
+        height: 52px;
+      }
+      .ekg path {
+        fill: none;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+      .ekg-ghost {
+        stroke: var(--ok);
+        stroke-width: 1.2;
+        opacity: 0.16;
+      }
+      /* the bright sweep: dash + offset set by JS from getTotalLength so the loop is seamless */
+      .ekg-pulse {
+        stroke: var(--ok);
+        stroke-width: 2;
+        filter: drop-shadow(0 0 5px rgba(70, 176, 111, 0.9));
+      }
+      /* 3. Hank breathes at his post */
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-hank {
+          animation: float 6s ease-in-out infinite;
+        }
+        /* 4. h1 blur-in on load */
+        header h1 {
+          animation: blurin 0.8s ease both;
+        }
+        /* 5. ★ card breathes amber — pulls the eye to the wedge */
+        .card.star {
+          animation: starglow 3.2s ease-in-out infinite;
+        }
+      }
+      .card.star:hover {
+        animation: none; /* let the hover shadow take over */
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+          filter: drop-shadow(0 12px 34px rgba(245, 165, 36, 0.18));
+        }
+        50% {
+          transform: translateY(-8px);
+          filter: drop-shadow(0 18px 40px rgba(245, 165, 36, 0.3));
+        }
+      }
+      @keyframes starglow {
+        0%,
+        100% {
+          box-shadow: 0 0 0 rgba(245, 165, 36, 0);
+        }
+        50% {
+          box-shadow: 0 0 26px rgba(245, 165, 36, 0.16);
+        }
+      }
+      /* 6. Hank parallax — drifts against the scroll. `translate` composes with float's `transform` */
+      @supports (animation-timeline: view()) {
+        @media (prefers-reduced-motion: no-preference) {
+          .hero-hank {
+            animation:
+              float 6s ease-in-out infinite,
+              hankpara linear both;
+            animation-timeline: auto, view();
+            animation-range: normal, cover;
+          }
+        }
+      }
+      @keyframes hankpara {
+        from {
+          translate: 0 -64px;
+        }
+        to {
+          translate: 0 64px;
+        }
+      }
+      /* 7. slow sheen glint on the hero CTA — sits off-screen at rest (also covers reduced-motion) */
+      .hero-copy .cta {
+        vertical-align: top; /* overflow:hidden below shifts the baseline; keep both buttons level */
+      }
+      .hero-copy .cta:not(.ghost) {
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-copy .cta:not(.ghost)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60%;
+        height: 100%;
+        pointer-events: none;
+        background: linear-gradient(
+          100deg,
+          transparent,
+          rgba(255, 255, 255, 0.45),
+          transparent
+        );
+        transform: translateX(-180%) skewX(-18deg);
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-copy .cta:not(.ghost)::after {
+          animation: sheen 5s ease-in-out infinite;
+        }
+      }
+      @keyframes sheen {
+        0% {
+          transform: translateX(-180%) skewX(-18deg);
+        }
+        14%,
+        100% {
+          transform: translateX(320%) skewX(-18deg);
+        }
+      }
+      @keyframes blurin {
+        from {
+          opacity: 0;
+          filter: blur(12px);
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: none;
+        }
       }
       @media (max-width: 960px) {
         .prices {
@@ -645,6 +925,11 @@
     </style>
   </head>
   <body>
+    <div class="sky" aria-hidden="true">
+      <div class="stars far"></div>
+      <div class="stars mid"></div>
+      <div class="stars near"></div>
+    </div>
     <header>
       <div class="wrap">
         <nav>
@@ -684,6 +969,8 @@
             >
             <a class="cta ghost" href="#how">See how it works</a>
 
+            <p class="nightline" id="nightline" hidden></p>
+
             <pre
               class="snip"
             ><span class="c"># add one line to any cron job — Deadhand stays silent until it doesn't check in</span>
@@ -699,6 +986,26 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
         </div>
       </div>
     </header>
+
+    <div class="ekg" aria-hidden="true">
+      <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <path
+          class="ekg-ghost"
+          d="M0,40 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0"
+        />
+        <path
+          class="ekg-pulse"
+          d="M0,40 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0 l150,0 l8,-7 l8,7 l14,0 l4,6 l6,-44 l6,56 l4,-18 l16,0 q12,-12 24,0"
+        />
+      </svg>
+    </div>
+
+    <div class="watchlog" aria-hidden="true">
+      <span class="wl-dot"></span>
+      <span id="wlTime">--:--:-- UTC</span>
+      <span class="wl-sep">·</span>
+      <span id="wlMsg">all systems quiet</span>
+    </div>
 
     <section id="how">
       <div class="wrap">
@@ -929,14 +1236,16 @@ monitors:
 
     <section id="waitlist">
       <div class="wrap">
-        <img
-          id="wlHank"
-          class="wl-hank"
-          src="assets/hank-watch.png"
-          width="104"
-          height="104"
-          alt="Hank, the night-watchman, on watch"
-        />
+        <div>
+          <img
+            id="wlHank"
+            class="wl-hank"
+            src="assets/hank-watch.png"
+            width="104"
+            height="104"
+            alt="Hank, the night-watchman, on watch"
+          />
+        </div>
         <p class="eyebrow">Early access</p>
         <h2>Get in before launch</h2>
         <p class="lead" style="margin-left: auto; margin-right: auto">
@@ -1040,6 +1349,80 @@ monitors:
           hank.classList.add("cheer");
         }
       });
+
+      // Night sky: 3 depth layers, each star with its own size, duration and phase — max desync.
+      (function () {
+        var layers = [
+          { sel: ".stars.far", n: 34, min: 1, max: 1.6 },
+          { sel: ".stars.mid", n: 20, min: 1.4, max: 2.1 },
+          { sel: ".stars.near", n: 11, min: 2, max: 2.9 },
+        ];
+        layers.forEach(function (L) {
+          var box = document.querySelector(L.sel);
+          if (!box) return;
+          for (var k = 0; k < L.n; k++) {
+            var s = document.createElement("span");
+            s.className = "star";
+            var size = (L.min + Math.random() * (L.max - L.min)).toFixed(1);
+            s.style.left = (Math.random() * 100).toFixed(2) + "%";
+            s.style.top = (Math.random() * 100).toFixed(2) + "%";
+            s.style.width = s.style.height = size + "px";
+            if (Math.random() < 0.1) s.style.background = "#f5a524"; // a few amber
+            s.style.animationDuration = (2.5 + Math.random() * 5).toFixed(2) + "s";
+            s.style.animationDelay = (-Math.random() * 7).toFixed(2) + "s";
+            box.appendChild(s);
+          }
+        });
+      })();
+
+      // Watch-log readout: live UTC clock + slowly rotating "all quiet" status.
+      (function () {
+        var t = document.getElementById("wlTime");
+        var m = document.getElementById("wlMsg");
+        if (!t) return;
+        var msgs = [
+          "all systems quiet",
+          "nothing to report",
+          "heartbeats on time",
+          "watch is steady",
+          "all quiet on the stack",
+        ];
+        function tick() {
+          t.textContent = new Date().toISOString().slice(11, 19) + " UTC";
+        }
+        tick();
+        setInterval(tick, 1000);
+        var i = 0;
+        setInterval(function () {
+          i = (i + 1) % msgs.length;
+          m.textContent = msgs[i];
+        }, 7000);
+      })();
+
+      // Night-aware line: Hank acknowledges it's late where you are.
+      (function () {
+        var n = document.getElementById("nightline");
+        if (!n) return;
+        var h = new Date().getHours();
+        if (h >= 21 || h < 6) {
+          n.textContent =
+            "It's late where you are. Get some sleep — we've got the watch.";
+          n.hidden = false;
+        }
+      })();
+
+      // EKG sweep — bright segment travels the static trace, like a heart monitor.
+      // WAAPI isn't caught by the CSS reduced-motion rule, so guard it here.
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.querySelectorAll(".ekg-pulse").forEach(function (p) {
+          var L = p.getTotalLength();
+          p.style.strokeDasharray = L * 0.1 + " " + L * 0.9; // bright 10%, gap 90% — pattern = L → seamless
+          p.animate(
+            [{ strokeDashoffset: 0 }, { strokeDashoffset: -L }],
+            { duration: 4500, iterations: Infinity, easing: "linear" },
+          );
+        });
+      }
 
       // copy-to-clipboard on code blocks
       document.querySelectorAll(".snip").forEach(function (pre) {
