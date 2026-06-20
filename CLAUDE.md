@@ -3,10 +3,12 @@
 A focused monitoring SaaS for solo devs, small teams, and agencies. One tool, three silent failures:
 
 1. **Dead man's switch** — heartbeat/cron monitoring. Jobs ping a URL; we stay silent while pings arrive on time, alert when one's late, runs too long, or fails.
-2. **Uptime** — HTTP checks (status, response time, keyword), plus SSL & domain expiry.
-3. **Security drift** ★ — the wedge. Baseline an endpoint (security headers, cookie flags, redirects, exposed paths like `/.env`), then alert **only on regression** vs that baseline. A tripwire for "today is less safe than yesterday." Not a pentest.
+2. **Uptime** — HTTP checks (status, response time, keyword match).
+3. **SSL & domain expiry** — watch TLS certs and domain registration; warn well before either lapses.
 
-**Positioning:** NOT "another cron+uptime tool" — Cronitor/BetterStack already bundle those. Lead with **security drift** (the underserved leg) + **flat pricing** (vs per-monitor pricing that punishes indie users). Web dashboard for everyone + monitors-as-code (YAML) for those who want it.
+**Positioning:** flat pricing (vs per-monitor pricing that punishes indie users), one tool instead of three, and the dead man's switch for cron as the lead hook. Web dashboard for everyone + monitors-as-code (YAML) for those who want it.
+
+> ⚠️ **Open strategic gap (2026-06-20):** security drift — formerly the documented wedge — was **dropped** by founder decision after the keyword recon suggested weak search demand and an already-crowded header-monitoring niche. The honest consequence: Deadhand currently competes head-on with Cronitor/BetterStack/UptimeRobot on **flat pricing alone**, which is a thin differentiator. A new wedge/angle still needs to be defined. Note this pivot was made **before** any real validation traffic (Reddit posts were filtered/banned, PostHog has ~0 `section_interest` data), so the "nobody wants security drift" call is a hunch, not data.
 
 **Deliberately out of scope:** status pages, on-call/escalation, logs/APM/RUM, full pentest/DAST, multi-region/screenshots/traceroute. Staying narrow is the product.
 
@@ -18,7 +20,7 @@ We're testing demand **before** writing the product. `index.html` is a fake-door
 - **Domain:** `deadhand.app` (bought). `.io`/`.com` are parked — revisit only if validation passes.
 - **Analytics:** PostHog (US region, token in `index.html`). Key events: `section_interest`, `pricing_click`, `waitlist_signup`.
 - **Waitlist:** Formspree (`xrevvpzn`) — stores submissions + `tier_interest`, CSV export.
-- **Kill-criterion:** <30 waitlist signups in 2 weeks, OR interest lands only on uptime/cron and skips security → pivot the pitch or stop.
+- **Kill-criterion:** <30 waitlist signups in 2 weeks → pivot the pitch or stop. (The old "interest skips security" sub-criterion is retired now that the security leg is dropped.)
 
 ## Docs
 
@@ -30,4 +32,4 @@ We're testing demand **before** writing the product. `index.html` is a fake-door
 ## Working notes
 
 - All user-facing copy must follow `docs/brand/brand-voice.md`. The hard rule: playful at rest, dead-serious in alerts.
-- Pricing on the landing is a fake-door (Free $0 / Solo $5 / Team $12 / Agency $29, flat). Not real billing yet. **Cron + uptime are free; security drift (the wedge) is gated to paid (Solo+)** — the pricing structure itself sells the differentiation and measures willingness to pay for the wedge.
+- Pricing on the landing is a fake-door (Free $0 / Solo $5 / Team $12 / Agency $29, flat). Not real billing yet. **Cron + uptime are free; paid (Solo+) adds faster checks, more channels, SSL & domain expiry, and higher monitor counts.** The paid gate is now feature/volume-based (not a single wedge), so it measures willingness to pay for convenience rather than for a unique capability — a weaker signal worth keeping in mind.

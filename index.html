@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Deadhand — on watch while you sleep. Cron, uptime &amp; security drift,
-      one monitor.
+      Deadhand — on watch while you sleep. Cron monitoring &amp; uptime in one
+      tool.
     </title>
     <meta
       name="description"
-      content="One monitor for three silent failures: cron jobs that stop running, endpoints that go down, and security posture that quietly breaks after a deploy. Flat pricing. Dashboard-first, code optional."
+      content="One tool for the silent failures: cron jobs that stop running, endpoints that go down, and SSL certs or domains that quietly expire. Flat pricing. Dashboard-first, code optional."
     />
     <link
       rel="icon"
@@ -28,7 +28,7 @@
     />
     <meta
       property="og:description"
-      content="Silent while everything's alive, blunt the second it isn't. One monitor for three silent failures: cron, uptime, and security drift. Flat pricing."
+      content="Silent while everything's alive, blunt the second it isn't. One tool for cron, uptime, and SSL &amp; domain expiry. Flat pricing."
     />
     <meta
       property="og:image"
@@ -47,7 +47,7 @@
     />
     <meta
       name="twitter:description"
-      content="Silent while everything's alive, blunt the second it isn't. Cron, uptime &amp; security drift in one monitor. Flat pricing."
+      content="Silent while everything's alive, blunt the second it isn't. Cron, uptime &amp; SSL/domain expiry in one tool. Flat pricing."
     />
     <meta
       name="twitter:image"
@@ -968,17 +968,17 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <span class="pill"
-              >Dead man's switch · Uptime · Security drift</span
+              >Dead man's switch · Uptime · SSL &amp; domain expiry</span
             >
             <h1>
               We're on watch.<br />
               <span class="hl">Sleep well.</span>
             </h1>
             <p class="sub">
-              A deploy quietly strips your CSP. A cron job silently stops. An
-              endpoint starts returning <code>500</code>. Your site still
-              "works" — so nothing alerts you. Deadhand keeps watch over all
-              three: silent while everything's alive, blunt the second it isn't.
+              A cron job silently stops. An endpoint starts returning
+              <code>500</code>. An SSL cert quietly slides toward expiry. Your
+              stuff still "works" — so nothing alerts you. Deadhand keeps watch:
+              silent while everything's alive, blunt the second it isn't.
             </p>
             <a class="cta" href="#waitlist" data-ev="hero_cta"
               >Get early access</a
@@ -1033,15 +1033,14 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
           build the right thing first.
         </p>
         <div class="cards">
-          <div class="card star" data-section="security">
-            <span class="tag">★ The one nobody else does</span>
-            <h3>Security drift</h3>
+          <div class="card" data-section="ssl">
+            <span class="tag">SSL &amp; domain</span>
+            <h3>SSL &amp; domain expiry</h3>
             <p>
-              Deadhand snapshots a baseline of your endpoint — security headers,
-              cookie flags, redirects, exposed paths like <code>/.env</code> —
-              then alerts only when a deploy makes it <em>worse</em> than
-              before. Not a pentest. A tripwire for "today is less safe than
-              yesterday."
+              Deadhand watches your TLS certificates and domain registration and
+              warns you well before either lapses — no more sites going dark
+              because a cert expired on a Sunday or a domain auto-renew quietly
+              failed.
             </p>
             <span class="more">This is my pain →</span>
           </div>
@@ -1062,9 +1061,9 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
             <span class="tag">Uptime</span>
             <h3>Sites &amp; APIs</h3>
             <p>
-              HTTP checks for status code, response time, and keyword match —
-              plus SSL and domain expiry. Repeat-before-alert so a single
-              network blip doesn't wake you at 3am.
+              HTTP checks for status code, response time, and keyword match.
+              Repeat-before-alert so a single network blip doesn't wake you at
+              3am.
             </p>
             <span class="more">This is my pain →</span>
           </div>
@@ -1089,7 +1088,7 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
           class="snip"
         ><span class="c"># deadhand.yml — monitors as code</span>
 monitors:
-  - type: <span class="g">security</span>    url: https://app.example.com        watch: [headers, cookies, exposed_paths]
+  - type: <span class="g">tls</span>         url: https://app.example.com        warn_before: 21d
   - type: <span class="g">http</span>        url: https://app.example.com/health keyword: "ok"
   - type: <span class="g">heartbeat</span>   name: nightly-backup                schedule: "0 3 * * *"  grace: 30m</pre>
       </div>
@@ -1100,7 +1099,7 @@ monitors:
         <p class="eyebrow">One alert flow, everywhere you already are</p>
         <h2>Get the alert where it actually reaches you.</h2>
         <p class="lead">
-          Every alert — a missed job, a downed endpoint, a security regression —
+          Every alert — a missed job, a downed endpoint, an expiring cert —
           flows through one stream. Pick the channels you want; add more
           anytime. No on-call schedules, no escalation policies to configure.
         </p>
@@ -1184,9 +1183,9 @@ monitors:
         <h2>Pay one price. Monitor what you need.</h2>
         <p class="lead">
           Competitors charge per monitor and per seat until a few dozen checks
-          cost $100+/mo. Deadhand is flat. Cron and uptime are free, like
-          everywhere — the thing nobody else watches, security drift, starts at
-          $5. Pick a plan to grab your spot; billing starts at launch.
+          cost $100+/mo. Deadhand is flat — one price, monitor what you need.
+          Start free; faster checks, more channels, and SSL &amp; domain expiry
+          start at $5. Pick a plan to grab your spot; billing starts at launch.
         </p>
         <div class="prices">
           <div class="price">
@@ -1208,7 +1207,7 @@ monitors:
             <div class="amt">$5<span>/mo</span></div>
             <ul>
               <li>25 monitors</li>
-              <li><b>+ Security drift</b></li>
+              <li><b>+ SSL &amp; domain expiry</b></li>
               <li>1-min checks</li>
               <li>+ Slack, Discord, webhooks</li>
               <li>Monitors as code (API)</li>
