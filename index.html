@@ -827,12 +827,15 @@
           }
         }
       }
+      .hero-hank {
+        --hank-drift: 64px;
+      }
       @keyframes hankpara {
         from {
-          translate: 0 -64px;
+          translate: 0 calc(var(--hank-drift) * -1);
         }
         to {
-          translate: 0 64px;
+          translate: 0 var(--hank-drift);
         }
       }
       /* 7. slow sheen glint on the hero CTA — sits off-screen at rest (also covers reduced-motion) */
@@ -903,6 +906,8 @@
         .hero-hank {
           order: -1;
           width: 168px;
+          /* keep the parallax tiny on mobile so Hank doesn't drift onto the copy below */
+          --hank-drift: 16px;
         }
         .hero-copy .pill {
           margin-top: 4px;
