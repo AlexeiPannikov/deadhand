@@ -537,18 +537,6 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       }
-      .card.star:hover {
-        border-color: var(--accent);
-        box-shadow: 0 10px 30px rgba(245, 165, 36, 0.18);
-      }
-      .card.star {
-        border-color: var(--accent);
-        background: linear-gradient(
-          180deg,
-          rgba(245, 165, 36, 0.06),
-          var(--panel)
-        );
-      }
       .card .tag {
         font: 600 11px/1 var(--mono);
         letter-spacing: 0.08em;
@@ -556,9 +544,6 @@
         color: var(--accent2);
         display: block;
         margin-bottom: 12px;
-      }
-      .card.star .tag {
-        color: var(--accent);
       }
       .card h3 {
         margin: 0 0 8px;
@@ -787,13 +772,6 @@
         header h1 {
           animation: blurin 0.8s ease both;
         }
-        /* 5. ★ card breathes amber — pulls the eye to the wedge */
-        .card.star {
-          animation: starglow 3.2s ease-in-out infinite;
-        }
-      }
-      .card.star:hover {
-        animation: none; /* let the hover shadow take over */
       }
       @keyframes float {
         0%,
@@ -806,16 +784,7 @@
           filter: drop-shadow(0 18px 40px rgba(245, 165, 36, 0.3));
         }
       }
-      @keyframes starglow {
-        0%,
-        100% {
-          box-shadow: 0 0 0 rgba(245, 165, 36, 0);
-        }
-        50% {
-          box-shadow: 0 0 26px rgba(245, 165, 36, 0.16);
-        }
-      }
-      /* 6. Hank parallax — drifts against the scroll. `translate` composes with float's `transform` */
+      /* 5. Hank parallax — drifts against the scroll. `translate` composes with float's `transform` */
       @supports (animation-timeline: view()) {
         @media (prefers-reduced-motion: no-preference) {
           .hero-hank {
@@ -838,7 +807,7 @@
           translate: 0 var(--hank-drift);
         }
       }
-      /* 7. slow sheen glint on the hero CTA — sits off-screen at rest (also covers reduced-motion) */
+      /* 6. slow sheen glint on the hero CTA — sits off-screen at rest (also covers reduced-motion) */
       .hero-copy .cta {
         vertical-align: top; /* overflow:hidden below shifts the baseline; keep both buttons level */
       }
@@ -1033,18 +1002,6 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
           build the right thing first.
         </p>
         <div class="cards">
-          <div class="card" data-section="ssl">
-            <span class="tag">SSL &amp; domain</span>
-            <h3>SSL &amp; domain expiry</h3>
-            <p>
-              Deadhand watches your TLS certificates and domain registration and
-              warns you well before either lapses — no more sites going dark
-              because a cert expired on a Sunday or a domain auto-renew quietly
-              failed.
-            </p>
-            <span class="more">This is my pain →</span>
-          </div>
-
           <div class="card" data-section="cron">
             <span class="tag">Dead man's switch</span>
             <h3>Cron &amp; scheduled jobs</h3>
@@ -1064,6 +1021,18 @@ backup.sh &amp;&amp; curl -fsS <span class="g">https://deadhand.app/ping/&lt;you
               HTTP checks for status code, response time, and keyword match.
               Repeat-before-alert so a single network blip doesn't wake you at
               3am.
+            </p>
+            <span class="more">This is my pain →</span>
+          </div>
+
+          <div class="card" data-section="ssl">
+            <span class="tag">SSL &amp; domain</span>
+            <h3>SSL &amp; domain expiry</h3>
+            <p>
+              Deadhand watches your TLS certificates and domain registration and
+              warns you well before either lapses — no more sites going dark
+              because a cert expired on a Sunday or a domain auto-renew quietly
+              failed.
             </p>
             <span class="more">This is my pain →</span>
           </div>
