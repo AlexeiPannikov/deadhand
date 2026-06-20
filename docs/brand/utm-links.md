@@ -21,6 +21,8 @@ Copy the link for wherever you post:
 | Dev.to article | `https://deadhand.app/?utm_source=devto&utm_medium=article&utm_campaign=validation` |
 | Product Hunt | `https://deadhand.app/?utm_source=producthunt&utm_medium=launch&utm_campaign=validation` |
 | Lobsters | `https://deadhand.app/?utm_source=lobsters&utm_medium=post&utm_campaign=validation` |
+| BetaList | `https://deadhand.app/?utm_source=betalist&utm_medium=directory&utm_campaign=validation` |
+| SaaSHub | `https://deadhand.app/?utm_source=saashub&utm_medium=directory&utm_campaign=validation` |
 
 ## Notes
 
